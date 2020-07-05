@@ -1,14 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap');
 
 * {
-    --branco: #fff;
+    --claro: #a1a5b4;
+    --desfarce: #666c8a;
     --azulEscuro: #333853;
     --azulClarinho: #3C4262;
     --verde: #219653;
     --amarelo: #F2C94C;
-    color: var(--branco);
+    --sombra: -1px 2px 2px 0 #2c2c2c;
+    --border-radius: 5%;
+    color: var(--claro);
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
+    box-sizing: border-box;
 }
 
 body {

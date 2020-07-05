@@ -1,0 +1,10 @@
+.titulo{
+    font-size: 2rem;
+}
+
+.botao{
+    background-color: var(--azulClarinho);
+    box-shadow: var(--sombra);
+    border: none;
+    border-radius: var(--border-radius);
+}

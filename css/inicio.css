@@ -1,0 +1,66 @@
+@import 'components.css';
+
+body{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-flow: column;
+}
+
+.titulo{
+    text-align: center;
+}
+
+.configuracao {
+    width: 70%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    margin: auto;
+}
+
+.botao{
+    width: 200px;
+    padding: 15px 30px;
+    border-radius: var(--border-radius);
+    margin: 50px auto;
+}
+
+.etapa {
+    width: 20%;
+    margin: 0 2%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+}
+.etapa__valor {
+    width: 65%;
+    height: 70%;
+    margin: 5%;
+    background-color: var(--azulClarinho);
+    box-shadow: var(--sombra);
+    border-radius: var(--border-radius);
+}
+.etapa__numero {
+    font-size: 3rem;
+    margin: 0;
+    text-align: center;
+    transform: translateY(20%);
+}
+.etapa__setas {
+    width: 20%;
+    
+}
+.etapa__setas ion-icon{
+    font-size: 1.6rem;
+    color: var(--desfarce);
+    box-shadow: 1px 1px 2px 0 #2c2c2c;
+    border-radius: 50%;
+    padding: 2%;
+    background-color: var(--azulClarinho);
+}
+.etapa__descricao {
+    text-indent: 20%;
+    margin-top: 5%;
+}
