@@ -3,23 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Pomodoro</title>
-    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/geral.css">
+    <link rel="stylesheet" href="../css/pomodoro.css">
 </head>
 <body>
     
     <div class="cabecalho">
-        <h1 class="cabecalho__titulo">Pomodoro</h1>
-        <button class="cabecalho__botao">Início</button>
+        <h1 class="titulo">Pomodoro</h1>
+        <button class="botao clock__botao">Início</button>
     </div>
     
     <div class="clock">
-        <span class="clock__count">0</span>
-        <div class="">
-            <h2>Trabalho</h2>
-            <span></span>
-            <span></span>
-            <span></span>
-            <button><ion-icon name="play-outline"></ion-icon></button>
+        <div class="clock__contador">
+            <div class="clock__numero">0:00</div>
+        </div>
+        <div class="clock__hud">
+            <h2 class="titulo clock__status">Status</h2>
+
+            <ul class="clock__ciclos">
+                <li class="clock__ciclo clock__ciclo--um"></li>
+                <li class="clock__ciclo clock__ciclo--dois"></li>
+                <li class="clock__ciclo clock__ciclo--tres"></li>
+            </ul>
+
+            <button class="botao clock__start">
+                <ion-icon name="play-outline" class="botao__inicia"></ion-icon>
+                <ion-icon name="pause-outline" class="botao__pausa is-hiden"></ion-icon>
+            </button>
         </div>
     </div>
 

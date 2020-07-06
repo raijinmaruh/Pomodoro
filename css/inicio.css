@@ -21,14 +21,14 @@ body{
 
 .botao{
     width: 200px;
-    padding: 15px 30px;
+    padding: 1.3rem 1.5rem;
     border-radius: var(--border-radius);
-    margin: 50px auto;
+    margin: 2.5rem auto;
 }
 
 .etapa {
     width: 20%;
-    margin: 0 2%;
+    margin: 0 2rem;
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
@@ -37,7 +37,7 @@ body{
 .etapa__valor {
     width: 65%;
     height: 70%;
-    margin: 5%;
+    margin: .5rem;
     background-color: var(--azulClarinho);
     box-shadow: var(--sombra);
     border-radius: var(--border-radius);
@@ -57,10 +57,11 @@ body{
     color: var(--desfarce);
     box-shadow: 1px 1px 2px 0 #2c2c2c;
     border-radius: 50%;
-    padding: 2%;
+    padding: .010rem;
+    margin: .2rem 0;
     background-color: var(--azulClarinho);
 }
 .etapa__descricao {
     text-indent: 20%;
-    margin-top: 5%;
+    margin-top: .2rem;
 }

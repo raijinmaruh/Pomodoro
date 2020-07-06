@@ -8,3 +8,5 @@
     border: none;
     border-radius: var(--border-radius);
 }
+
+.is-hiden { display: none;}
