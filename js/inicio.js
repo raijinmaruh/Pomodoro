@@ -2,7 +2,7 @@
 const $setas = {
     cima: document.querySelectorAll(".seta-cima"),
     baixo: document.querySelectorAll(".seta-baixo"),
-    limite: 60,
+    limites: [25, 5, 4]
 }
 
 /* "Mas não seria mais fácil colocar direto em uma constante
@@ -11,23 +11,27 @@ const $setas = {
  R: estou testando a funcionalidade.
  */
 const { cima, baixo } = $setas;
-
-// Falta mudar os valores baseado no clique
+const $valores = document.querySelectorAll(".etapa__numero");
+// Tempo limite de cada campo
+const [trabalho, pausa, sessao] = $setas.limites;
 cima.forEach( ( seta, indice ) => {
-
-    const $valores = document.querySelectorAll(".etapa__numero");
+    
     seta.addEventListener('click', _ => {
-        console.log($setas.limite);
-        console.log(indice);
-        console.log($valores.item(indice));
+        const valor = $valores[indice];
+        const limite = [trabalho, pausa, sessao];
+        if (valor.textContent < limite[indice]){
+            valor.textContent++;
+        }
     })
-
 })
 
-
-
-    // console.log($setas.baixo[indice]);
-
-    // function changeNumber () { 
-    // }
+baixo.forEach( ( seta, indice ) => {
     
+    seta.addEventListener('click', _ => {
+        const valor = $valores[indice];
+        const limite = 0;
+        if (valor.textContent > limite){
+            valor.textContent--;
+        }
+    })
+})
