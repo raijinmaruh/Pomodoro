@@ -44,9 +44,14 @@ body{
 }
 .etapa__numero {
     font-size: 3rem;
+    width: 100%;
+    border: none;
+    background-color: transparent;
     margin: 0;
     text-align: center;
     transform: translateY(20%);
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
 }
 .etapa__setas {
     width: 20%;
