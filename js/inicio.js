@@ -12,15 +12,16 @@ const { cima, baixo } = $setas;
 
 // Valores padrões
 const $valores = document.querySelectorAll(".etapa__numero");
-let valor_trabalho = $valores[0];
-let valor_pausa = $valores[1];
-let valor_sessao = $valores[2];
+const valor_trabalho = $valores[0];
+const valor_pausa = $valores[1];
+const valor_sessao = $valores[2];
 valor_trabalho.defaultValue = 25;
 valor_pausa.defaultValue = 5;
 valor_sessao.defaultValue = 3;
 
 // Tempo limite de cada campo
 const [trabalho, pausa, sessao] = $setas.limites;
+
 cima.forEach( ( seta, indice ) => {
     
     seta.addEventListener('click', _ => {
@@ -42,3 +43,18 @@ baixo.forEach( ( seta, indice ) => {
         }
     })
 })
+
+// Setar o temporizador
+const $continuar_btn = document.querySelector(".continuar-btn");
+
+$continuar_btn.addEventListener("click", _ => {
+    sessionStorage.setItem("trabalho", valor_trabalho.value);
+    sessionStorage.setItem("pausa", valor_pausa.value);
+    sessionStorage.setItem("sessao", valor_sessao.value);
+    /* 
+    Nesse caso, a window será redirecionada para a mesma página, utilizando o "_self".
+    Caso esse argumento não seja passado, a página é recarregada em uma outra aba. 
+    Default: _blank
+    */
+    window.open("/views/pomodoro.html", "_self");
+});
