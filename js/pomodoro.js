@@ -6,14 +6,14 @@ Number.prototype.pad = function(tamanho = 2) {
   return string;
 }
 
+const temporizador_principal = document.querySelector(".clock__numero");
+const iniciar = document.querySelector(".clock__start");
 const $inicio_botao = document.querySelector(".clock__botao");
 $inicio_botao.addEventListener('click' , _ => window.open("/views/inicio.html", "_self"));
-const temporizador_principal = document.querySelector(".clock__numero");
-const inicial = document.querySelector(".clock__start");
 let valor_trabalho = sessionStorage.getItem("trabalho");
 
 temporizador_principal.textContent = `${valor_trabalho}:00`;
-
+iniciar.addEventListener('click', decrementar); 
 /* 
 Essa função irá implementar a cada iteração "i = 1".
 Caso o número em i seja maior, o loop assume que o código
@@ -26,7 +26,8 @@ Ex: caso i = 3:
 de uma só vez.
 */
 
-function decrementar(minutos = 3) {
+function decrementar() {
+	let minutos = valor_trabalho - 1;
 	const SEGUNDOS = 60;
 		for (let i = 0; i < 1; i++) {
 		let segundos_contados = SEGUNDOS;
