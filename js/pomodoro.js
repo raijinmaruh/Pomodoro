@@ -2,7 +2,7 @@ const $botao_inicio = document.querySelector(".clock__botao");
 $botao_inicio.addEventListener('click' , _ => window.open("./inicio.html", "_self"));
 
 // Função para fazer com que o número de zeros a esqueda seja suficiente
-Number.prototype.pad = function(tamanho = 2) {
+Number.prototype.pad = function(tamanho) {
   var string = String(this);
   while (string.length < (tamanho || 2)) {string = "0" + string;}
   return string;
@@ -18,16 +18,15 @@ temporizador_principal.textContent = `${valor_trabalho}:00`;
 
 botao_iniciar.addEventListener('click', mudarEstado);
 
+let segundos = 3;
+let minutos = 0;
+
 function retomar() {
-	const segundos = 60;
-	let valor_restante = 0;
-	let minutos = valor_trabalho - 1;
-	
-	let segundos_contados = segundos;
-	let minutos_contados = minutos;
+	let segundos_contados = parseInt(segundos);
+	let minutos_contados = parseInt(minutos);
 	return decrementar = setInterval( _ => {
 		segundos_contados--;
-		temporizador_principal.textContent = `${minutos_contados}:${segundos_contados.pad()}`;
+		temporizador_principal.textContent = `${minutos_contados.pad()}:${segundos_contados.pad()}`;
 		if (minutos_contados === 0 && segundos_contados === 0) {
 			pausar(decrementar);
 		}
@@ -40,8 +39,10 @@ function retomar() {
 
 function pausar(tarefa){
 	clearInterval(tarefa);
-	let tempo_restante = temporizador_principal.textContent;
-	minutos = tempo_restante;
+	let minutos_restantes = temporizador_principal.textContent.slice(0,2);
+	let segundos_restantes = temporizador_principal.textContent.slice(3,5);
+	minutos = minutos_restantes;
+	segundos = segundos_restantes;
 }
 
 function mudarEstado() {
