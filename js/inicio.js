@@ -56,5 +56,5 @@ $continuar_btn.addEventListener("click", _ => {
     Caso esse argumento não seja passado, a página é recarregada em uma outra aba. 
     Default: _blank
     */
-    window.open("/views/pomodoro.html", "_self");
+    window.open("./pomodoro.html", "_self");
 });
