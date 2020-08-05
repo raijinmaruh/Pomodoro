@@ -1,12 +1,14 @@
 const $botao_inicio = document.querySelector(".clock__botao");
+const $status = document.querySelector(".clock__status");
 const $temporizador_principal = document.querySelector(".clock__numero");
-const $botao_iniciar = document.querySelector(".clock__start");
+const $botao_comecar = document.querySelector(".clock__start");
 const $valor_trabalho = parseInt(sessionStorage.getItem("trabalho"));
 let ativo = document.querySelector(".botao__inicia");
 let pausado = document.querySelector(".botao__pausa");
 let estado = false; // true == ativo; | false == pausado;
 let segundos = 60;
 let minutos = $valor_trabalho - 1;
+let decrementar; // tive que fazer isso aqui
 // Função para fazer com que o número de zeros a esqueda seja suficiente
 Number.prototype.pad = function(tamanho) {
   var string = String(this);
@@ -15,7 +17,7 @@ Number.prototype.pad = function(tamanho) {
 }
 
 $temporizador_principal.textContent = `${$valor_trabalho.pad()}:00`;
-$botao_iniciar.addEventListener('click', mudarEstado);
+$botao_comecar.addEventListener('click', mudarEstado);
 
 function retomar() {
 	/* 
@@ -25,7 +27,7 @@ function retomar() {
 	*/
 	let segundos_contados = parseInt(segundos);
 	let minutos_contados = parseInt(minutos);
-	return decrementar = setInterval( _ => {
+	decrementar = setInterval( _ => {
 		segundos_contados--;
 		$temporizador_principal.textContent = `${minutos_contados.pad()}:${segundos_contados.pad()}`;
 		if (minutos_contados == 0 && segundos_contados == 0) {
@@ -36,6 +38,7 @@ function retomar() {
 			minutos_contados--;
 			segundos_contados = 60;
 		}
+	
 	},1000);
 }
 
@@ -45,10 +48,6 @@ function pausar(tarefa){
 	let segundos_restantes = $temporizador_principal.textContent.slice(3,5);
 	segundos = segundos_restantes;
 	minutos = minutos_restantes;
-	if (minutos_restantes > 0) {
-		minutos--;
-		segundos = 60;
-	}
 }
 
 function mudarEstado() {
@@ -57,12 +56,16 @@ function mudarEstado() {
 		pausar(decrementar);
 		ativo.classList.toggle('escondido');
 		pausado.classList.toggle('escondido');
+		$status.textContent = "Pausa";
+		$status.style.color = '#F2C94C';
 	}
 	else {
 		estado = true;
 		retomar();
 		pausado.classList.toggle('escondido');
 		ativo.classList.toggle('escondido');
+		$status.textContent = "Trabalho";
+		$status.style.color = '#219653';
 	}
 }
 
