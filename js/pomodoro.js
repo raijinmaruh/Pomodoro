@@ -12,9 +12,9 @@ const temporizador_principal = document.querySelector(".clock__numero");
 const botao_iniciar = document.querySelector(".clock__start");
 let ativo = document.querySelector(".botao__inicia");
 let pausado = document.querySelector(".botao__pausa");
-const valor_trabalho = sessionStorage.getItem("trabalho");
+const valor_trabalho = parseInt(sessionStorage.getItem("trabalho"));
 let estado = false; // true == ativo; | false == pausado;
-temporizador_principal.textContent = `${valor_trabalho}:00`;
+temporizador_principal.textContent = `${valor_trabalho.pad()}:00`;
 
 botao_iniciar.addEventListener('click', mudarEstado);
 
@@ -33,7 +33,8 @@ function retomar() {
 		segundos_contados--;
 		temporizador_principal.textContent = `${minutos_contados.pad()}:${segundos_contados.pad()}`;
 		if (minutos_contados == 0 && segundos_contados == 0) {
-			pausar(decrementar);
+			clearInterval(decrementar);
+			mudarEstado();
 		}
 		if (segundos_contados == 0) {
 			minutos_contados--;
@@ -48,24 +49,23 @@ function pausar(tarefa){
 	let segundos_restantes = temporizador_principal.textContent.slice(3,5);
 	segundos = segundos_restantes;
 	minutos = minutos_restantes;
-	if (segundos_restantes == 0) {
+	if (minutos_restantes > 0) {
 		minutos--;
 		segundos = 60;
 	}
 }
 
 function mudarEstado() {
-	let escondido = 'escondido';
 	if (estado) {
 		estado = false;
 		pausar(decrementar);
-		ativo.classList.remove(escondido);
-		pausado.classList.add(escondido);
+		ativo.classList.toggle('escondido');
+		pausado.classList.toggle('escondido');
 	}
 	else {
 		estado = true;
 		retomar();
-		pausado.classList.remove(escondido);
-		ativo.classList.add(escondido);
+		pausado.classList.toggle('escondido');
+		ativo.classList.toggle('escondido');
 	}
 }
