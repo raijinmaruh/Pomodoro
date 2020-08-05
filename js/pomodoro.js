@@ -1,6 +1,12 @@
 const $botao_inicio = document.querySelector(".clock__botao");
-$botao_inicio.addEventListener('click' , _ => window.open("./inicio.html", "_self"));
-
+const $temporizador_principal = document.querySelector(".clock__numero");
+const $botao_iniciar = document.querySelector(".clock__start");
+const $valor_trabalho = parseInt(sessionStorage.getItem("trabalho"));
+let ativo = document.querySelector(".botao__inicia");
+let pausado = document.querySelector(".botao__pausa");
+let estado = false; // true == ativo; | false == pausado;
+let segundos = 60;
+let minutos = $valor_trabalho - 1;
 // Função para fazer com que o número de zeros a esqueda seja suficiente
 Number.prototype.pad = function(tamanho) {
   var string = String(this);
@@ -8,18 +14,8 @@ Number.prototype.pad = function(tamanho) {
   return string;
 }
 
-const temporizador_principal = document.querySelector(".clock__numero");
-const botao_iniciar = document.querySelector(".clock__start");
-let ativo = document.querySelector(".botao__inicia");
-let pausado = document.querySelector(".botao__pausa");
-const valor_trabalho = parseInt(sessionStorage.getItem("trabalho"));
-let estado = false; // true == ativo; | false == pausado;
-temporizador_principal.textContent = `${valor_trabalho.pad()}:00`;
-
-botao_iniciar.addEventListener('click', mudarEstado);
-
-let segundos = 60;
-let minutos = valor_trabalho - 1;
+$temporizador_principal.textContent = `${$valor_trabalho.pad()}:00`;
+$botao_iniciar.addEventListener('click', mudarEstado);
 
 function retomar() {
 	/* 
@@ -31,7 +27,7 @@ function retomar() {
 	let minutos_contados = parseInt(minutos);
 	return decrementar = setInterval( _ => {
 		segundos_contados--;
-		temporizador_principal.textContent = `${minutos_contados.pad()}:${segundos_contados.pad()}`;
+		$temporizador_principal.textContent = `${minutos_contados.pad()}:${segundos_contados.pad()}`;
 		if (minutos_contados == 0 && segundos_contados == 0) {
 			clearInterval(decrementar);
 			mudarEstado();
@@ -45,8 +41,8 @@ function retomar() {
 
 function pausar(tarefa){
 	clearInterval(tarefa);
-	let minutos_restantes = temporizador_principal.textContent.slice(0,2);
-	let segundos_restantes = temporizador_principal.textContent.slice(3,5);
+	let minutos_restantes = $temporizador_principal.textContent.slice(0,2);
+	let segundos_restantes = $temporizador_principal.textContent.slice(3,5);
 	segundos = segundos_restantes;
 	minutos = minutos_restantes;
 	if (minutos_restantes > 0) {
@@ -69,3 +65,5 @@ function mudarEstado() {
 		ativo.classList.toggle('escondido');
 	}
 }
+
+$botao_inicio.addEventListener('click' , _ => window.open("./inicio.html", "_self"));
